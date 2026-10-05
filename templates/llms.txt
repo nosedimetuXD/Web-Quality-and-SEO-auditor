@@ -1,0 +1,14 @@
+# Project Name
+
+> High-level summary of the website or application, its target audience, and key services/products.
+
+## Key Resources
+- [Home](https://example.com/): Official landing page.
+- [Documentation](https://example.com/docs): Full product documentation and API references.
+- [Terms of Service](https://example.com/terms): Legal conditions and usage guidelines.
+- [Privacy Policy](https://example.com/privacy): Data privacy commitments.
+
+## Core Features & Architecture
+- Feature 1: Description of primary offering.
+- Feature 2: Description of secondary capabilities.
+- Stack: Framework (e.g., Next.js, Astro, Remix, Vite).

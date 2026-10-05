@@ -1,0 +1,11 @@
+# robots.txt standard production template
+User-agent: *
+Allow: /
+
+# Disallow private and administrative endpoints
+Disallow: /admin/
+Disallow: /api/private/
+Disallow: /dashboard/account/
+
+# Declare canonical sitemap location
+Sitemap: https://example.com/sitemap.xml
