@@ -19,6 +19,26 @@
 | | Image Formats | WebP / AVIF with fixed `width`/`height` | [ ] |
 | | Lazy Loading | Media below fold uses `loading="lazy"` | [ ] |
 | | View Source | No leaked environment variables or tokens | [ ] |
+| | Oculta claves API | Client bundles stripped of private keys/secrets | [ ] |
+| | Elimina secretos Git | Zero credentials or `.env` in Git history | [ ] |
+| | Clave pública DB | Client uses scoped anon/public keys only | [ ] |
+| | Activa RLS | Row-Level Security enabled on DB tables | [ ] |
+| | Cifra datos sensibles | PII & secrets encrypted in transit & at rest | [ ] |
+| | Autenticación servidor | Server middleware & handlers enforce auth | [ ] |
+| | Acceso a registros | Scoped queries by user_id (prevent IDOR) | [ ] |
+| | Manipulación de campos | Mass assignment blocked (protected fields) | [ ] |
+| | Cookies de sesión | HttpOnly, Secure, SameSite=Lax/Strict | [ ] |
+| | Hashea contraseñas | Salted Argon2id or bcrypt (cost >= 12) | [ ] |
+| | Limita intentos inicio | Rate limiting on login / auth endpoints | [ ] |
+| | Protección contra bots | Turnstile / CAPTCHA on public submissions | [ ] |
+| | Monitoriza consultas DB | Slow queries, N+1 & SQL injection audited | [ ] |
+| | Valida entradas | Schema validation (Zod/Joi) on all requests | [ ] |
+| | Escapa contenido usuario | Contextual output escaping & XSS prevention | [ ] |
+| | Subida de archivos | MIME whitelist, magic bytes, isolated storage | [ ] |
+| | Limita respuestas API | Pagination enforced, internal fields stripped | [ ] |
+| | Cabeceras de seguridad | CSP, HSTS, X-Frame-Options, nosniff present | [ ] |
+| | Fuerza HTTPS | Automatic 301 redirect to HTTPS + HSTS preload | [ ] |
+| | Escanea dependencias | CI/CD dependency vulnerability scan active | [ ] |
 | **Phase 4** | Breakpoints | Mobile-first, zero horizontal scroll | [ ] |
 | | Form States | Explicit visual and ARIA error states | [ ] |
 | | Thank You Page | Conversion actions route to confirmation | [ ] |

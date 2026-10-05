@@ -59,7 +59,7 @@ When developing new features, reviewing source code, or auditing an existing dep
 
 ---
 
-### Phase 3: Performance, Bundling & Production Security
+### Phase 3: Performance, Bundling & Production Security Hardening
 1. **Production Source Maps**:
    - **CRITICAL SECURITY REQUIREMENT**: Build pipelines must disable or strip public `.map` files (source maps) in production deployments (`generateSourceMaps: false` or equivalent) to prevent proprietary code leakage.
 2. **Bundle Optimization & Code Splitting**:
@@ -71,8 +71,61 @@ When developing new features, reviewing source code, or auditing an existing dep
 4. **Lazy Loading**:
    - Apply `loading="lazy"` and `decoding="async"` to all media elements below the initial viewport (*below-the-fold*).
    - Priority above-the-fold hero images must use `priority` or `loading="eager"`.
-5. **View-Source Audit**:
-   - Verify that the rendered HTML output (`view-source:`) is clean, does not expose development tokens, private environment keys (`process.env`, secret tokens), staging endpoints, or redundant commented-out markup.
+5. **View-Source & Client Secret Sanitization (Ocultar claves API)**:
+   - Ensure rendered client HTML (`view-source:`) and JavaScript bundles never expose private API keys, service role tokens, master keys, or private backend environment variables (`process.env.SECRET_*`).
+   - Only expose explicitly intended public client identifiers (e.g., `NEXT_PUBLIC_*` strictly scoped to read-only or anon keys).
+6. **Git Secret Hygiene (Elimina secretos de Git)**:
+   - Enforce `.gitignore` to strictly exclude `.env`, `.env.local`, `.env.production`, private keys (`.pem`, `.key`), credentials files, and build artifacts.
+   - Run pre-commit secret scans (e.g., Gitleaks, TruffleHog) to guarantee that zero secrets or hardcoded passwords ever enter Git commit history.
+7. **Database Key Scoping & Public Keys (Usa una clave pública de DB)**:
+   - Never use administrative/service-role database connection strings on the client or exposed edge functions.
+   - Client-side database libraries (e.g., Supabase, Firebase) must strictly use limited public/anon keys scoped with Row-Level Security.
+8. **Row-Level Security (Activa RLS)**:
+   - All relational and document database tables exposed to APIs or client queries must have Row-Level Security (RLS) enabled (`ALTER TABLE ... ENABLE ROW LEVEL SECURITY`).
+   - Explicit access policies must guard `SELECT`, `INSERT`, `UPDATE`, and `DELETE` operations based on `auth.uid()`.
+9. **Sensitive Data Encryption (Cifra datos sensibles)**:
+   - Encrypt Personally Identifiable Information (PII), financial tokens, secrets, and sensitive user records both **in transit** (TLS 1.3) and **at rest** (AES-256 / column-level encryption).
+10. **Server-Side Authentication Enforcement (Fuerza autenticación del servidor)**:
+    - Never rely on client-side route guards alone. Enforce authentication and role-based authorization (RBAC) in server middleware, server-side route handlers, and API endpoints before executing business logic.
+11. **Strict Record Access Scoping (Restringe acceso a registros)**:
+    - Prevent Insecure Direct Object References (IDOR). Every query fetching user data or orders must explicitly filter by the authenticated session owner (`WHERE id = :id AND user_id = :auth_user_id`).
+12. **Mass Assignment & Field Tampering Protection (Bloquea manipulación de campos)**:
+    - Whitelist accepted payload fields in mutation handlers (DTOs/schemas).
+    - Block clients from tampering with protected fields such as `role`, `is_admin`, `verified`, `balance`, `plan`, or `created_at`.
+13. **Session Cookie Hardening (Protege cookies de sesión)**:
+    - All authentication and session cookies must be issued with strict flags: `HttpOnly`, `Secure`, `SameSite=Lax` (or `Strict`), and proper `Path` and expiration boundaries.
+14. **Strong Password Hashing (Hashea contraseñas)**:
+    - Never store plaintext or MD5/SHA1 hashed passwords.
+    - Enforce modern, slow, salted adaptive hashing algorithms: **Argon2id** (preferred) or **bcrypt** (minimum work factor 12).
+15. **Rate Limiting & Brute-Force Throttling (Limita intentos de inicio)**:
+    - Implement aggressive IP and account-based rate limiting on sensitive routes: `/login`, `/register`, `/reset-password`, `/verify-otp`.
+    - Apply exponential backoff or account lockouts after consecutive failed attempts.
+16. **Bot & Abuse Mitigation (Añade protección contra bots)**:
+    - Protect public submission endpoints and auth forms with privacy-friendly bot mitigation (e.g., Cloudflare Turnstile, hCaptcha, invisible challenges, or honeypot fields).
+17. **Database Query Monitoring & Optimization (Monitoriza consultas de DB)**:
+    - Enable query performance logging to detect slow queries (N+1 problems), unindexed joins, and abnormal query spikes. Prevent unparameterized queries to eradicate SQL injection.
+18. **Strict Input Validation (Valida todas las entradas)**:
+    - Enforce schema validation at runtime for all incoming requests (headers, query parameters, body payloads) using libraries like Zod, Joi, or Pydantic. Reject unexpected payloads (`stripUnknown: true`).
+19. **Output Sanitization & XSS Escaping (Escapa contenido del usuario)**:
+    - Ensure all user-supplied data rendered into HTML, attributes, or markdown is contextually escaped to prevent Cross-Site Scripting (XSS). Sanitize HTML payloads with DOMPurify.
+20. **File Upload Restrictions (Restringe subida de archivos)**:
+    - Validate file uploads against a strict MIME-type whitelist and magic byte inspection (never trust file extensions alone).
+    - Enforce maximum file size limits, strip EXIF metadata, randomize stored file names, and serve uploaded media from isolated object storage (S3/R2) with restrictive Content-Disposition.
+21. **API Response Sanitization & Pagination (Limita respuestas de API)**:
+    - Enforce pagination limits (default `limit`, `max_limit`) on listing endpoints.
+    - Exclude internal fields, stack traces, database schemas, and password hashes from serialization before sending JSON responses to clients.
+22. **Security Headers Hardening (Añade cabeceras de seguridad)**:
+    - Inject standard security headers on all HTTP responses:
+      - `Content-Security-Policy (CSP)`
+      - `X-Frame-Options: DENY`
+      - `X-Content-Type-Options: nosniff`
+      - `Referrer-Policy: strict-origin-when-cross-origin`
+      - `Permissions-Policy: camera=(), microphone=(), geolocation=()`
+23. **Strict HTTPS & Transport Security (Fuerza HTTPS)**:
+    - Automatically redirect all HTTP traffic to HTTPS (301 Permanent Redirect).
+    - Enforce HTTP Strict Transport Security: `Strict-Transport-Security: max-age=63072000; includeSubDomains; preload`.
+24. **Automated Dependency & Supply Chain Scanning (Escanea dependencias)**:
+    - Regularly scan third-party dependencies for known vulnerabilities (CVEs) using `npm audit`, `pnpm audit`, `pip-audit`, Dependabot, or Snyk in CI/CD pipelines. Block deployments with critical or high severity vulnerabilities.
 
 ---
 
@@ -124,7 +177,7 @@ When asked to audit code, analyze a URL, or generate new implementations, format
 
 1. **Compliance Check Summary**: A status table/checklist across all 5 phases indicating **[PASS]**, **[WARN]**, or **[FAIL]**.
 2. **Remediation Plan**: Actionable list of issues categorized by severity:
-   - **P0 (Critical)**: Production leaks, broken robots/indexing, blocking performance flaws, illegal tracking prior to cookie consent (GDPR/ePrivacy violation).
-   - **P1 (High)**: Missing canonical, duplicate H1, missing alt attributes, broken schema, absent Privacy Policy or Cookie Policy pages.
-   - **P2 (Medium/Low)**: Favicon omissions, missing `llms.txt`, minor layout polish.
+   - **P0 (Critical)**: Exposed API keys/secrets in client code or Git history, unauthenticated server mutations, missing RLS on DB tables, plaintext passwords, unescaped user inputs causing XSS, unprotected session cookies, illegal tracking prior to cookie consent.
+   - **P1 (High)**: Missing rate limiting, missing CSRF/bot mitigation, untyped/unvalidated file uploads, missing security headers, missing HTTPS redirect, outdated vulnerable dependencies, missing canonical tag, duplicate H1, missing alt attributes, absent Privacy/Cookie policy pages.
+   - **P2 (Medium/Low)**: Favicon omissions, missing `llms.txt`, minor layout polish, unoptimized image dimensions.
 3. **Direct Implementation**: The corrected code files or configuration artifacts needed to achieve full compliance.
