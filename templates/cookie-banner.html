@@ -1,0 +1,30 @@
+<!--
+  Cookie Consent Banner (CMP) accessible standard component
+  Strict requirement: Do not execute non-essential tracking scripts until accepted.
+-->
+
+<div id="cookie-consent-banner" role="dialog" aria-modal="true" aria-labelledby="cookie-title" aria-describedby="cookie-desc" class="cookie-banner" style="position:fixed;bottom:0;left:0;right:0;background:#111827;color:#fff;padding:1.25rem;z-index:9999;box-shadow:0 -4px 10px rgba(0,0,0,0.15);">
+  <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;">
+    <div style="flex:1 1 500px;">
+      <h2 id="cookie-title" style="font-size:1.1rem;font-weight:600;margin:0 0 0.5rem 0;">Control de Cookies y Privacidad</h2>
+      <p id="cookie-desc" style="font-size:0.9rem;margin:0;color:#d1d5db;line-height:1.4;">
+        Utilizamos cookies propias y de terceros para fines analíticos y para mejorar tu experiencia. Puedes aceptar todas, rechazarlas o configurar tus preferencias. Consulta nuestra 
+        <a href="/cookies" style="color:#60a5fa;text-decoration:underline;">Política de Cookies</a> y nuestra 
+        <a href="/privacidad" style="color:#60a5fa;text-decoration:underline;">Política de Privacidad</a>.
+      </p>
+    </div>
+
+    <div style="display:flex;gap:0.75rem;flex-wrap:wrap;align-items:center;">
+      <!-- Equal prominence for Accept and Reject to comply with regulations -->
+      <button type="button" id="cookie-reject-btn" style="padding:0.5rem 1rem;background:#374151;color:#fff;border:1px solid #4b5563;border-radius:0.375rem;cursor:pointer;font-weight:500;">
+        Rechazar no esenciales
+      </button>
+      <button type="button" id="cookie-settings-btn" style="padding:0.5rem 1rem;background:transparent;color:#9ca3af;border:1px solid #4b5563;border-radius:0.375rem;cursor:pointer;font-weight:500;">
+        Configurar
+      </button>
+      <button type="button" id="cookie-accept-btn" style="padding:0.5rem 1rem;background:#2563eb;color:#fff;border:none;border-radius:0.375rem;cursor:pointer;font-weight:600;">
+        Aceptar todas
+      </button>
+    </div>
+  </div>
+</div>

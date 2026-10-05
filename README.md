@@ -16,7 +16,7 @@ This skill equips any AI coding agent with a rigorous 5-phase auditing and remed
 - **Phase 2: Metadata, Semantics, A11y & Structured Data**: Strictly per-page tailored `<title>` (50-60 chars) and `<meta name="description">` (140-160 chars + CTA), single `<h1>`, OpenGraph/Twitter cards, multi-format favicons, `alt` attributes, Schema.org JSON-LD.
 - **Phase 3: Performance, Bundling & Security**: Production source map stripping, code splitting, WebP/AVIF images, layout shift prevention, lazy loading, secret leakage prevention.
 - **Phase 4: UX, Form Handling & Responsive Design**: Mobile-first breakpoints, accessible form validation states, conversion confirmation pages, feedback channels.
-- **Phase 5: System Pages & Observability**: Branded 404 pages, legal pages (Terms/Privacy), non-blocking telemetry.
+- **Phase 5: System Pages, Legal Compliance & Observability**: Branded 404 pages, comprehensive Privacy Policy (GDPR/CCPA compliant disclosures), Cookie Policy & prior-consent CMP banner, Terms of Service, consent-integrated telemetry.
 
 ---
 

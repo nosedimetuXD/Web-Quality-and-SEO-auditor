@@ -94,10 +94,27 @@ When developing new features, reviewing source code, or auditing an existing dep
 ### Phase 5: System Pages, Legal Compliance & Observability
 1. **Custom 404 Page**:
    - Build a branded, user-friendly 404 error page offering clear guidance, a search utility, or a direct link back to the homepage.
-2. **Legal Pages**:
-   - Maintain indexable and up-to-date "Terms & Conditions" and "Privacy Policy" routes linked from the persistent site footer.
-3. **Analytics & Telemetry**:
-   - Implement web analytics scripts (e.g., Plausible, PostHog, or Google Analytics) asynchronously or via deferred loading to protect Core Web Vitals while respecting consent banners.
+2. **Comprehensive Privacy Policy (`/privacidad`, `/privacy-policy`)**:
+   - **MANDATORY LEGAL PAGE**: Maintain an indexable, legally compliant and up-to-date Privacy Policy page permanently linked in the global footer.
+   - **Required Disclosures**:
+     - Identity and contact information of the Data Controller / Website Owner.
+     - Specific categories of personal data collected (forms, logs, device metadata, IP addresses).
+     - Legal basis for data processing (consent, contractual necessity, legitimate interest under GDPR/CCPA/relevant regulations).
+     - Third-party data sharing (analytics providers, hosting, payment gateways, marketing tools).
+     - User data rights (access, rectification, erasure/deletion, portability, objection).
+     - Data retention periods and user instructions on how to request data deletion.
+3. **Cookie Policy & Consent Management (`/cookies`, CMP Banner)**:
+   - **MANDATORY COOKIE POLICY & CONSENT**:
+     - Maintain an explicit Cookie Policy page detailing all cookies/local storage identifiers used, categorized by purpose: *Strictly Necessary*, *Analytics/Performance*, *Preferences*, and *Marketing/Advertising*, along with their duration and provider.
+     - **Consent Banner (CMP)**:
+       - Strictly block non-essential tracking cookies and scripts **prior to affirmative user consent** (no pre-checked checkboxes, no implicit consent via scrolling).
+       - Provide balanced, accessible choices with equal prominence (e.g., "Accept All", "Reject Non-Essential", "Customize / Manage Preferences").
+       - Allow users to revoke or adjust their cookie consent at any time via a persistent footer link (e.g., "Configurar cookies" / "Cookie Settings").
+4. **Terms & Conditions (`/terminos`, `/terms`)**:
+   - Maintain indexable Terms and Conditions covering service scope, acceptable use, liability limitations, and governing jurisdiction.
+5. **Analytics, Telemetry & Consent Integration**:
+   - Implement web analytics scripts (e.g., Plausible, PostHog, or Google Analytics 4) asynchronously or via deferred loading.
+   - Integrate analytics triggers strictly with the Consent Management state (e.g., Google Consent Mode v2 or conditional script execution) so that Core Web Vitals remain protected and no tracking fires without valid consent.
 
 ---
 
@@ -107,7 +124,7 @@ When asked to audit code, analyze a URL, or generate new implementations, format
 
 1. **Compliance Check Summary**: A status table/checklist across all 5 phases indicating **[PASS]**, **[WARN]**, or **[FAIL]**.
 2. **Remediation Plan**: Actionable list of issues categorized by severity:
-   - **P0 (Critical)**: Production leaks, broken robots/indexing, blocking performance flaws.
-   - **P1 (High)**: Missing canonical, duplicate H1, missing alt attributes, broken schema.
+   - **P0 (Critical)**: Production leaks, broken robots/indexing, blocking performance flaws, illegal tracking prior to cookie consent (GDPR/ePrivacy violation).
+   - **P1 (High)**: Missing canonical, duplicate H1, missing alt attributes, broken schema, absent Privacy Policy or Cookie Policy pages.
    - **P2 (Medium/Low)**: Favicon omissions, missing `llms.txt`, minor layout polish.
 3. **Direct Implementation**: The corrected code files or configuration artifacts needed to achieve full compliance.

@@ -24,5 +24,7 @@
 | | Thank You Page | Conversion actions route to confirmation | [ ] |
 | | Feedback | Feedback trigger accessible to users | [ ] |
 | **Phase 5** | 404 Page | Custom branded page with navigation | [ ] |
-| | Legal Pages | Terms and Privacy policies linked in footer | [ ] |
-| | Analytics | Asynchronous/deferred, consent-compliant | [ ] |
+| | Privacy Policy | Detailed GDPR/CCPA disclosures linked in footer | [ ] |
+| | Cookie Policy & Banner | Prior consent CMP, categories list & revoking link | [ ] |
+| | Terms of Service | Scope, usage & liability terms linked in footer | [ ] |
+| | Analytics | Asynchronous, deferred & linked to consent state | [ ] |
