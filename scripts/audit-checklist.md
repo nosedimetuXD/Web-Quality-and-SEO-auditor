@@ -2,7 +2,7 @@
 
 | Phase | Item | Requirement | Status |
 |---|---|---|---|
-| **Phase 1** | `robots.txt` | Present, allows public routes, links sitemap | [ ] |
+| **Phase 1** | `robots.txt` | Present, allows public routes & AI bots (GPTBot, ClaudeBot, PerplexityBot) | [ ] |
 | | `sitemap.xml` | Generated with `<lastmod>` timestamps | [ ] |
 | | Canonical tag | Absolute URL present in `<head>` | [ ] |
 | | `llms.txt` | Context Markdown available at root | [ ] |

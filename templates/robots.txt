@@ -1,11 +1,40 @@
-# robots.txt standard production template
+# robots.txt AI-Friendly & Production Optimized
 User-agent: *
 Allow: /
 
-# Disallow private and administrative endpoints
+# Explicitly welcome AI Search & LLM Crawlers (Perplexity, OpenAI, Anthropic, Google-Extended, etc.)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Cohere-ai
+Allow: /
+
+# Disallow private and administrative endpoints only
 Disallow: /admin/
 Disallow: /api/private/
 Disallow: /dashboard/account/
 
-# Declare canonical sitemap location
+# Declare canonical sitemap and LLM context files
 Sitemap: https://example.com/sitemap.xml
+

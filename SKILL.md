@@ -18,6 +18,7 @@ When developing new features, reviewing source code, or auditing an existing dep
 1. **Robots Control (`robots.txt`)**:
    - Ensure a valid `robots.txt` exists at domain root (`/robots.txt`).
    - Do not use a naive global block (`Disallow: /`) in production.
+   - **MANDATORY AI & LLM ACCESSIBILITY**: Under no circumstance block AI search and LLM crawlers (`GPTBot`, `PerplexityBot`, `ClaudeBot`, `Google-Extended`, `Applebot-Extended`, `Meta-ExternalAgent`). Explicitly allow access so modern conversational search engines and AI agents can cite, index, and retrieve content.
    - Disallow sensitive paths only (`/admin`, `/api/private`, `/dashboard/account`).
    - Explicitly declare the absolute URL to the canonical `sitemap.xml`.
 2. **XML Sitemap (`sitemap.xml`)**:

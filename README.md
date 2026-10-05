@@ -12,7 +12,7 @@ An open-source, universal AI agent skill for automated web quality evaluation, t
 This skill equips any AI coding agent with a rigorous 5-phase auditing and remediation protocol. It enforces strict web development best practices before shipping code to production.
 
 ### Core Directives at a Glance
-- **Phase 1: Crawler Directives & Machine Discovery**: `robots.txt`, XML sitemap, canonical links, AI `llms.txt`, HTML `lang`.
+- **Phase 1: Crawler Directives & Machine Discovery**: AI/LLM-friendly `robots.txt` (never block AI bots like GPTBot, ClaudeBot, PerplexityBot), XML sitemap, canonical links, AI `llms.txt`, HTML `lang`.
 - **Phase 2: Metadata, Semantics, A11y & Structured Data**: Unique `<title>`, strict single `<h1>`, OpenGraph/Twitter cards, multi-format favicons, `alt` attributes, Schema.org JSON-LD.
 - **Phase 3: Performance, Bundling & Security**: Production source map stripping, code splitting, WebP/AVIF images, layout shift prevention, lazy loading, secret leakage prevention.
 - **Phase 4: UX, Form Handling & Responsive Design**: Mobile-first breakpoints, accessible form validation states, conversion confirmation pages, feedback channels.
