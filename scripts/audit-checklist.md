@@ -7,7 +7,8 @@
 | | Canonical tag | Absolute URL present in `<head>` | [ ] |
 | | `llms.txt` | Context Markdown available at root | [ ] |
 | | `<html lang>` | Document language explicitly defined | [ ] |
-| **Phase 2** | `<title>` | Unique pattern: `[Page] \| [Brand]` | [ ] |
+| **Phase 2** | Custom `<title>` | Per-page unique, 50-60 chars: `[Page] \| [Brand]` | [ ] |
+| | Custom Description | Per-page unique `<meta name="description">`, 140-160 chars + CTA | [ ] |
 | | Heading `<h1>` | Strictly one single `<h1>` tag per page | [ ] |
 | | OpenGraph | Full tags + `1200x630` preview image | [ ] |
 | | Favicons | SVG + legacy .ico + Apple touch icon | [ ] |

@@ -13,7 +13,7 @@ This skill equips any AI coding agent with a rigorous 5-phase auditing and remed
 
 ### Core Directives at a Glance
 - **Phase 1: Crawler Directives & Machine Discovery**: AI/LLM-friendly `robots.txt` (never block AI bots like GPTBot, ClaudeBot, PerplexityBot), XML sitemap, canonical links, AI `llms.txt`, HTML `lang`.
-- **Phase 2: Metadata, Semantics, A11y & Structured Data**: Unique `<title>`, strict single `<h1>`, OpenGraph/Twitter cards, multi-format favicons, `alt` attributes, Schema.org JSON-LD.
+- **Phase 2: Metadata, Semantics, A11y & Structured Data**: Strictly per-page tailored `<title>` (50-60 chars) and `<meta name="description">` (140-160 chars + CTA), single `<h1>`, OpenGraph/Twitter cards, multi-format favicons, `alt` attributes, Schema.org JSON-LD.
 - **Phase 3: Performance, Bundling & Security**: Production source map stripping, code splitting, WebP/AVIF images, layout shift prevention, lazy loading, secret leakage prevention.
 - **Phase 4: UX, Form Handling & Responsive Design**: Mobile-first breakpoints, accessible form validation states, conversion confirmation pages, feedback channels.
 - **Phase 5: System Pages & Observability**: Branded 404 pages, legal pages (Terms/Privacy), non-blocking telemetry.

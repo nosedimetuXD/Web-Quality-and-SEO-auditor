@@ -33,20 +33,28 @@ When developing new features, reviewing source code, or auditing an existing dep
 ---
 
 ### Phase 2: Metadata, Semantics, A11y & Structured Data
-1. **Title Uniqueness**:
-   - Every single route must provide an explicit, unique, and descriptive `<title>` tag adhering to the pattern: `[Page Name] | [Site/Brand Name]`.
-2. **Single Primary Heading (H1 Rule)**:
-   - **MANDATORY**: Each page must render strictly **one single `<h1>`** tag that defines the primary context of the content. Subsections must descend hierarchically (`<h2>` through `<h6>`) without skipping levels.
-3. **OpenGraph & Social Previews**:
+1. **Per-Page Custom Titles (`<title>`)**:
+   - **MANDATORY PER-PAGE CUSTOMIZATION**: Every route/page must provide a unique, tailored, and context-specific `<title>` tag. Boilerplate, identical, or site-wide duplicate titles are strictly prohibited.
+   - **Pattern**: `[Specific Page/Topic Name] | [Site/Brand Name]` (or `[Primary Keyword/Intent] - [Page Name] | [Brand]`).
+   - **Length Limit**: Strictly maintain character length between **50 and 60 characters** (max 580px width) to avoid truncation in SERP snippets.
+   - **Search Intent**: Front-load the primary target keyword or value proposition of the specific route.
+2. **Per-Page Custom Meta Descriptions (`<meta name="description">`)**:
+   - **MANDATORY PER-PAGE CUSTOMIZATION**: Every single route must declare a distinct, compelling, and actionable meta description. Never repeat the same description across multiple routes or use generic filler text.
+   - **Length Limit**: Calibrated between **140 and 160 characters** to ensure full desktop and mobile snippet visibility without trailing ellipsis.
+   - **Content Requirements**: Must summarize the exact unique value of the specific page, incorporate secondary user intent keywords, and include a clear Call-To-Action (CTA) (e.g., *"Descubre cómo...", "Explora la guía completa de...", "Aprende paso a paso..."*).
+3. **Single Primary Heading (H1 Rule)**:
+   - **MANDATORY**: Each page must render strictly **one single `<h1>`** tag that defines the primary context of the content. Subsections must descend hierarchically (`<h2>` through `<h6>`) without skipping levels. The `<h1>` must conceptually align with the custom `<title>` without being an exact redundant clone.
+4. **OpenGraph & Social Previews**:
    - Include complete OpenGraph meta tags (`og:title`, `og:description`, `og:url`, `og:type`, `og:image`) and Twitter cards (`twitter:card`, `twitter:title`, `twitter:description`, `twitter:image`).
+   - `og:title` and `og:description` must match or specifically adapt the page's custom title and description for high social engagement.
    - The `og:image` URL must be absolute and point to an asset optimized for social preview (recommended size: `1200x630` px).
-4. **Favicon Multi-Platform Support**:
+5. **Favicon Multi-Platform Support**:
    - Define valid favicon assets in `<head>` covering modern formats: SVG for vector scaling, `favicon.ico` for legacy clients, and an `apple-touch-icon.png`.
-5. **Image Accessibility (`alt` text)**:
+6. **Image Accessibility (`alt` text)**:
    - Every `<img>` tag must include an `alt` attribute.
    - Informative images require concise, context-rich descriptions.
    - Purely decorative images must use an explicit empty attribute (`alt=""`) with `aria-hidden="true"`.
-6. **Structured Data (Schema.org / JSON-LD)**:
+7. **Structured Data (Schema.org / JSON-LD)**:
    - Inject valid JSON-LD schemas inside `<script type="application/ld+json">` representing the page's core entity (e.g., `WebSite`, `Organization`, `Article`, `Product`, or `FAQPage`).
 
 ---
